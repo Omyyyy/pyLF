@@ -1,0 +1,17 @@
+class> os>
+    method> Command(cmd)>
+        call> pyos.system(str(cmd))
+
+    constmethod> osName()>
+        return> pyplat.system()
+
+class> console>
+    constmethod> Clear()>
+        call> pyos.system("cls")
+
+class> consoleCmd>
+    method> Chdir(newdir)>
+        call> pyos.chdir(newdir)
+
+    method> Mkdir(dirname)>
+        call> pyos.mkdir(dirname)

@@ -1,0 +1,10 @@
+class> window>
+    method> __init__(self, name = "window", width = 600, height = 400)>
+        attr> name = name
+        attr> width = width
+        attr> height = height
+        attr> gui = pytk.Tk(className=str(name))
+
+    method> Create(self)>
+        call> self.gui.geometry(f"{str(self.width)}x{str(self.height)}")
+        call> self.gui.mainloop() 

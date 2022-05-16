@@ -1,0 +1,58 @@
+class> randnum>
+    method> randomInt(a, b)>
+        return> pyrand.randint(int(a), int(b))
+
+    method> randomFloat(a, b)>
+        return> pyrand.uniform(float(a), float(b))
+
+class> randstr>
+    method> randomStr(chars, case: str = 'any')>
+        if> case == "any">
+            return> "".join(pyrand.choice(pystr.ascii_uppercase + pystr.digits + pystr.ascii_lowercase + pystr.punctuation) for _ in range(int(chars)))
+
+        elif> case == "lowercase">
+            return> "".join(pyrand.choice(pystr.ascii_lowercase) for _ in range(int(chars)))
+
+        elif> case == "uppercase">
+            return> "".join(pyrand.choice(pystr.ascii_uppercase) for _ in range(int(chars)))
+
+        elif> case == "digits">
+            return> "".join(pyrand.choice(pystr.digits) for _ in range(int(chars)))
+
+        elif> case == "letters">
+            return> "".join(pyrand.choice(pystr.ascii_uppercase + pystr.ascii_lowercase) for _ in range(int(chars)))
+
+        elif> case == "special">
+            return> "".join(pyrand.choice(pystr.punctuation) for _ in range(int(chars)))
+
+        else>
+            return> "".join(pyrand.choice(pystr.ascii_uppercase + pystr.digits + pystr.ascii_lowercase + pystr.punctuation) for _ in range(int(chars)))
+
+
+class> randarray>
+    method> randomArray(chars, case: str = 'any')>
+        if> case == "any">
+            return> [pyrand.choice(pystr.ascii_uppercase + pystr.digits + pystr.ascii_lowercase + pystr.punctuation) for _ in range(int(chars))]
+
+        elif> case == "lowercase">
+            return> [pyrand.choice(pystr.ascii_lowercase) for _ in range(int(chars))]
+
+        elif> case == "uppercase">
+            return> [pyrand.choice(pystr.ascii_uppercase) for _ in range(int(chars))]
+
+        elif> case == "digits">
+            return> [pyrand.choice(pystr.digits) for _ in range(int(chars))]
+
+        elif> case == "letters">
+            return> [pyrand.choice(pystr.ascii_uppercase + pystr.ascii_lowercase) for _ in range(int(chars))]
+
+        elif> case == "special">
+            return> [pyrand.choice(pystr.punctuation) for _ in range(int(chars))]
+
+        else>
+            return> [pyrand.choice(pystr.ascii_uppercase + pystr.digits + pystr.ascii_lowercase + pystr.punctuation) for _ in range(int(chars))]
+
+    method> randomItem(ar)>
+        var> ar = list(ar)
+
+        return> random.choice(ar)

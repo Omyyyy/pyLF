@@ -1,0 +1,6 @@
+class> system>
+    constmethod> Argv()>
+        return> pysys.argv[1:]
+
+    method> argvIndex(ind)>
+        return> pysys.argv[ind]

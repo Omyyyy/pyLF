@@ -1,0 +1,7 @@
+class> decimal>
+    method> Decimal(n)>
+        return> pydec.Decimal(n)
+
+    method> setPrec(n)>
+        call> pydec.getcontext().prec = n
+    

@@ -1,0 +1,15 @@
+class> time>
+    constmethod> secsSinceEpoch()>
+        return> pytime.time()
+
+    method> Sleep(secs)>
+        call> pytime.sleep(float(secs))
+        return>
+
+class> timer>
+    constmethod> startTimer()>
+        global> start_time
+        var> start_time = pytime.time()
+
+    constmethod> endTimer()>
+        return> pytime.time() - start_time

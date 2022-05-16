@@ -1,0 +1,205 @@
+class> types>
+    method> Type(thing)>
+        if> isinstance(thing, int)>
+            if> str(thing) == "True" or str(thing) == "False">
+                return> "bool"
+
+            else>
+                return> "int"
+        
+        elif> isinstance(thing, str)>
+            return> "str"
+
+        elif> isinstance(thing, float)>
+            return> "float"
+
+        elif> isinstance(thing, list)>
+            return> "array"
+
+        elif> isinstance(thing, dict)>
+            return> "dict"
+
+        elif> isinstance(thing, tuple)>
+            return> "tuple"
+
+        elif> isinstance(thing, set)>
+            return> "set"
+
+        elif> thing is None>
+            return> "none"
+
+        else>
+            say> "TypeError: data type passed into 'types.Type()' not could not be found/evaluated"
+
+    method> toInt(expr)>
+        return> int(expr)
+
+    method> toStr(expr)>
+        return> str(expr)
+
+    method> toFloat(expr)>
+        return> float(expr)
+
+    method> toArray(expr)>
+        try>
+            return> list(expr)
+
+        catch> Exception>
+            return> [int(i) for i in str(expr)]
+
+class> interger>
+    method> Range(*args)>
+        var> nargs = len(args)
+        if> nargs == 1>
+            force> args[0] > 0, "interger.Range() requires a positive integer as the only argument"
+            var> start = 0
+            var> end = args[0]
+            var> step = 1
+        elif> nargs == 2>
+            force> args[1] > 0, "interger.Range() requires a positive integer as the second argument"
+            var> start = args[0]
+            var> end = args[1]
+            var> step = 1
+        elif> nargs == 3>
+            force> args[1] > 0, "interger.Range() requires a positive integer as the second argument"
+            var> start = args[0]
+            var> end = args[1]
+            var> step = args[2]
+
+        else>
+            say> "FuncError: interger.Range()> takes a min of 1 argument and max 3 arguments"
+            call> exit()
+
+        return> [i for i in range(start, end, step)]
+
+
+class> string>
+    method> Enum(ar)>
+        return> enumerate(ar)
+
+    method> Length(ar: str)>
+        return> len(ar)
+
+    method> isPal(e)>
+        return> str(e)[::-1] == str(e)
+
+    method> Upper(string)>
+        return> string.upper()
+
+    method> Lower(string)>
+        return> string.lower()
+
+    method> isDigit(string)>
+        try>
+            call> types.toInt(string)
+            return> True
+
+        catch> ValueError>
+            return> False
+
+    method> isDecimal(string)>
+        try>
+            call> types.toFloat(string)
+            return> True
+
+        catch> ValueError>
+            return> False
+
+    method> isSpace(tocheck)>
+        return> tocheck.isspace()
+
+    method> Split(initstring, splitby = " ", pieces = 1024)>
+        if> pieces != 1024>
+            return> initstring.split(splitby, pieces)
+
+        else>
+            return> initstring.split(splitby)
+
+    method> Strip(initstring, stripchar = None)>
+        if> stripchar is None>
+            return> initstring.strip()
+
+        else>
+            return> initstring.strip(str(stripchar))
+
+    method> lStrip(initstring, stripchar = None)>
+        if> stripchar is None>
+            return> initstring.lstrip()
+
+        else>
+            return> initstring.lstrip(str(stripchar))
+
+    method> Replace(initstring, torep, repwith)>
+        return> initstring.replace(torep, repwith)
+
+    method> Remove(initstring, toremove)>
+        return> initstring.replace(toremove, "")
+
+    method> rStrip(initstring, stripchar = None)>
+        if> stripchar is None>
+            return> initstring.rstrip()
+
+        else>
+            return> initstring.rstrip(str(stripchar))
+
+    method> removePrefix(initstring, prefix)>
+        return> initstring.removeprefix(prefix)
+
+    method> removeSuffix(initstring, suffix)>
+        return> initstring.removesuffix(suffix)
+
+class> array>
+    method> isSorted(ar: list)>
+        return> sorted(ar) == ar
+
+    method> Enum(ar: list)>
+        return> enumerate(ar)
+
+    method> Length(ar)>
+        return> len(ar)
+
+    method> Max(ar: list)>
+        return> max(ar)
+
+    method> Min(ar: list)>
+        return> min(ar)
+
+    method> Sum(ar: list)>
+        return> sum(ar)
+
+    method> Product(ar: list)>
+        var> prod = 1
+
+        for> i in ar>
+            var> prod *= types.toInt(i)
+
+        return> prod
+
+
+    method> Add(ar: list, toadd)>
+        return> ar + [toadd]
+
+    method> Index(ar: list, tofind)>
+        return> ar.index(tofind)
+
+    method> Item(ar: list, ind)>
+        return> ar[int(ind)]
+
+    method> Sort(ar: list)>
+        return> sorted(ar)
+
+    method> Count(ar: list, tocount)>
+        var> counted = 0
+
+        for> i in ar>
+            if> i == tocount>
+                var> counted += 1
+
+        return> counted
+
+    method> Reverse(ar: list)>
+        call> ar.reverse()
+        return> ar
+
+    method> Extend(a: list, b: list)>
+        return> a.extend(b)
