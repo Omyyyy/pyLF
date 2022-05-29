@@ -8,7 +8,7 @@ TEST = False
 
 MESSAGES = True
 
-APPROXTIME = False
+APPROXTIME = True
 
 TOTALTIME = True
 
