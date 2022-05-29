@@ -6,21 +6,34 @@ import runner
 
 TEST = False
 
-MESSAGES = True
+MESSAGES = False
 
 APPROXTIME = True
 
 TOTALTIME = True
 
 try:
-    if sys.argv[1].endswith(".lf\\"):
-        filename = sys.argv[1].removesuffix(".lf\\")
-
+    if sys.argv[-1].endswith(".lf\\"):
+        filename = sys.argv[-1].removesuffix(".lf\\")
+        
     else:
-        filename = sys.argv[1].removesuffix(".lf")
+        filename = sys.argv[-1].removesuffix(".lf")
 
 except IndexError:
-    filename = "temp"
+    print(compiler.red("LF: error: No file specified."))
+    exit(1)
+
+flags = sys.argv[1:-1]
+
+if "-t" in flags:
+    TEST = True
+
+    flags.remove("-t")
+
+if "-i" in flags:
+    MESSAGES = True
+
+    flags.remove("-i")
 
 
 print(f"[COMPILING] > Started compiling {filename}.lf;") if MESSAGES else None
