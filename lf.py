@@ -4,43 +4,41 @@ import time
 import sys
 import runner
 
-TEST = False
-
 MESSAGES = False
 
 APPROXTIME = True
 
 TOTALTIME = True
 
+OUTFILE = False
+
+args = sys.argv[1:]
+
 try:
-    if sys.argv[-1].endswith(".lf\\"):
-        filename = sys.argv[-1].removesuffix(".lf\\")
-        
-    else:
-        filename = sys.argv[-1].removesuffix(".lf")
+    filename = args[-1]
+
 
 except IndexError:
     print(compiler.red("LF: error: No file specified."))
     exit(1)
 
-flags = sys.argv[1:-1]
-
-if "-t" in flags:
-    TEST = True
-
-    flags.remove("-t")
+flags = args[:-1]
 
 if "-i" in flags:
     MESSAGES = True
-
     flags.remove("-i")
+
+if "-o" in flags:
+    OUTFILE = True
+    outputfilename = args[args.index("-o") + 1]
+    flags.remove("-o")
 
 
 print(f"[COMPILING] > Started compiling {filename}.lf;") if MESSAGES else None
 
 start_time = time.process_time()
 
-with open(filename + ".lf", "r") as f:
+with open(filename, "r") as f:
     for i in f.readlines():
         compiler.Lexer(i.replace("\n", "").replace("\t", "    ").split("#", 1)[0], filename) if i.split("#", 1)[0].isspace() == False and i.startswith("#") == False else None
 
@@ -56,16 +54,15 @@ print(f"[RUNNING] > Running...\n") if MESSAGES else None
 
 program_time = time.process_time()
 
-if TEST:
-    with open(filename + ".py", "w") as f:
+if OUTFILE:
+    with open(outputfilename, "w") as f:
         f.write(runner.code)
 
 try:
-    exec(runner.code.replace("array.Length(", "len(").replace("string.Length(", "len(").replace("interger.Range(", "range(").replace("string.Enum(", "enumerate(").replace("array.Enum(", "enum(").replace("array.Sum(", "sum("))
+    exec(runner.code)
 
-except TypeError as e:
-    if str(e).startswith("can't unbox heterogeneous list:"):
-        print(compiler.red("OverflowError: value exceeds 64-bit integer range"))
+except Exception as e:
+    print(compiler.red(f"LF: runtime error: {e}"))
 
 timeprog = time.process_time() - program_time
 
