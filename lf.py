@@ -34,7 +34,7 @@ if "-o" in flags:
     flags.remove("-o")
 
 
-print(f"[COMPILING] > Started compiling {filename}.lf;") if MESSAGES else None
+print(f"\n[COMPILING] > Started compiling {filename};") if MESSAGES else None
 
 start_time = time.process_time()
 

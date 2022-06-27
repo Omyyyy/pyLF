@@ -248,14 +248,14 @@ class Lexer:
 					runner.code += (ind + f"import decimal as pydec\n")
 				
 				try:
-					with open("c:\\LF\\builtins\\" + self.args, "r") as f:
+					with open("builtins/" + self.args, "r") as f:
 						for i in f.readlines():
 							Lexer(i.replace("\n", "").replace("\t", "    ").split("#", 1)[0], self.filename) if i.split("#", 1)[0].isspace() == False and i.startswith("#") == False else None
 
 				except FileNotFoundError:
 
 					try:
-						with open("c:\\LF\\modules\\" + self.args, "r") as f:
+						with open("modules/" + self.args, "r") as f:
 							for i in f.readlines():
 								Lexer(i.replace("\n", "").replace("\t", "    ").split("#", 1)[0], self.filename) if i.split("#", 1)[0].isspace() == False and i.startswith("#") == False else None
 

@@ -1,115 +1,81 @@
-class> math>
 
-    constmethod> Pi()>
-        return> 3.141592
-
-    constmethod> E()>
-        return> 2.718281
-
-    constmethod> Tau()>
-        return> 6.283185
-
-    constmethod> Infinity()>
-        return> float("inf")
-
-    method> Factors(x)>
-        if> x<=0>
-            return> [np.complex64(x) for x in range(0)]
-        array> factors = [i for i in range(1, x + 1) if x % i == 0]
-
-        if> len(factors) == 0>
-            return> [0]
-
-        else>
-            return> factors
-
-    method> isTriangular(n: int):
-
-        if> n==0 or n==1>
-            return> True
-    
-        var> triangular_sum = 0
-
-        for> i in range(n)>
-            var> triangular_sum += i
-
-            if> triangular_sum == n>
-                return> True
-
-            if> i == n>
-                return> False
-
-    method> isPrime(n)>
-        if> n == 2 or n == 3>
-            return> True
-
-        if> n % 2 == 0 or n < 2> 
-            return> False
-
-
-        for> i in range(3, int(n**0.5)+1, 2)>
-            if> n % i == 0>
-                return> False
-
-        return> True
-
-    method> isPythagoreanTriplet(a, b, c)>
-        return> a**2 + b**2 == c**2
-
-    method> Factorial(n)>
-        var> fact = 1
-  
-        for> i in range(1, int(n) + 1)>
-            var> fact = fact * i
-    
-        return> fact
-
-    method> Radians(n)>
-        return> pymaths.radians(n)
-
-    method> degSin(n)>
-        return> pymaths.sin(pymaths.radians(n))
-
-    method> degCos(n)>
-        return> pymaths.cos(pymaths.radians(n))
-
-    method> degTan(n)>
-        return> pymaths.tan(pymaths.radians(n))
-
-    method> Sin(n)>
-        return> pymaths.sin(n)
-
-    method> Cos(n)>
-        return> pymaths.cos(n)
-
-    method> Tan(n)>
-        return> pymaths.tan(n)
-
-    method> arcSin(n)>
-        return> pymaths.asin(n)
-
-    method> arcCos(n)>
-        return> pymaths.acos(n)
-
-    method> arcTan(n)>
-        return> pymaths.atan(n)
-
-    method> degArcSin(n)>
-        return> pymaths.asin(pymaths.radians(n))
-
-    method> degArcCos(n)>
-        return> pymaths.acos(pymaths.radians(n))
-
-    method> degArcTan(n)>
-        return> pymaths.atan(pymaths.radians(n))
-
-    method> Sqrt(n)>
-        return> round(int(n) ** (1/2), 7)
-
-    method> Cbrt(n)>
-        return> round(int(n) ** (1/3), 7)
-
-    method> Exp(n)>
-        return> math.E() ** n
-
-    
+from numba import jit, njit
+import numpy as np
+from numba.core.errors import NumbaDeprecationWarning, NumbaPendingDeprecationWarning
+import warnings
+warnings.filterwarnings("ignore")
+class math:
+    def Pi():
+        return 3.141592
+    def E():
+        return 2.718281
+    def Tau():
+        return 6.283185
+    def Infinity():
+        return float("inf")
+    def Factors(x):
+        if x<=0:
+            return None
+        factors = [i for i in range(1, x + 1) if x % i == 0]
+        if len(factors) == 0:
+            return [0]
+        else:
+            return factors
+    def isTriangular(n: int):
+        if n==0 or n==1:
+            return True
+        triangular_sum = 0
+        for i in range(n):
+            triangular_sum += i
+            if triangular_sum == n:
+                return True
+            if i == n:
+                return False
+    def isPrime(n):
+        if n == 2 or n == 3:
+            return True
+        if n % 2 == 0 or n < 2:
+            return False
+        for i in range(3, int(n**0.5)+1, 2):
+            if n % i == 0:
+                return False
+        return True
+    def isPythagoreanTriplet(a, b, c):
+        return a**2 + b**2 == c**2
+    def Factorial(n):
+        fact = 1
+        for i in range(1, int(n) + 1):
+            fact = fact * i
+        return fact
+    def Radians(n):
+        return pymaths.radians(n)
+    def degSin(n):
+        return pymaths.sin(pymaths.radians(n))
+    def degCos(n):
+        return pymaths.cos(pymaths.radians(n))
+    def degTan(n):
+        return pymaths.tan(pymaths.radians(n))
+    def Sin(n):
+        return pymaths.sin(n)
+    def Cos(n):
+        return pymaths.cos(n)
+    def Tan(n):
+        return pymaths.tan(n)
+    def arcSin(n):
+        return pymaths.asin(n)
+    def arcCos(n):
+        return pymaths.acos(n)
+    def arcTan(n):
+        return pymaths.atan(n)
+    def degArcSin(n):
+        return pymaths.asin(pymaths.radians(n))
+    def degArcCos(n):
+        return pymaths.acos(pymaths.radians(n))
+    def degArcTan(n):
+        return pymaths.atan(pymaths.radians(n))
+    def Sqrt(n):
+        return round(int(n) ** (1/2), 7)
+    def Cbrt(n):
+        return round(int(n) ** (1/3), 7)
+    def Exp(n):
+        return math.E() ** n
