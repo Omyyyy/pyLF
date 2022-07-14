@@ -17,7 +17,6 @@ args = sys.argv[1:]
 try:
     filename = args[-1]
 
-
 except IndexError:
     print(compiler.red("LF: error: No file specified."))
     exit(1)
@@ -38,9 +37,12 @@ print(f"\n[COMPILING] > Started compiling {filename};") if MESSAGES else None
 
 start_time = time.process_time()
 
-with open(filename, "r") as f:
-    for i in f.readlines():
-        compiler.Lexer(i.replace("\n", "").replace("\t", "    ").split("#", 1)[0], filename) if i.split("#", 1)[0].isspace() == False and i.startswith("#") == False else None
+try:
+    with open(filename, "r") as f:
+        for i in f.readlines():
+            compiler.Lexer(i.replace("\n", "").replace("\t", "    ").split("#", 1)[0], filename) if i.split("#", 1)[0].isspace() == False and i.startswith("#") == False else None
+
+except FileNotFoundError: print(compiler.red(f"LF: error: '{filename}' not found")); exit(1)
 
 timecomp = time.process_time() - start_time
 
